@@ -58,15 +58,23 @@ If you don't have access to OpenAI API, use Groq free-tier instead:
 - Run the main script without `--retrieval_only` to use LLM
 
 ### 3. **Run Evaluation:**
-```sh
-python evaluate.py --predictions predictions.jsonl --gold data/qasper-test-v0.3.json --retrieval_only
+#### Semantic (Question 1)
 ```
-$\rightarrow$ just evaluate the retrieval contexts.
+python evaluate_.py \
+--predictions semantic_predictions.jsonl \
+--gold data/qasper-test-v0.3.json \
+--bert_type bert-base-uncased \
+--cosine_type sentence-transformers/all-MiniLM-L6-v2
+```
 
-```sh
-python evaluate.py --predictions predictions.jsonl --gold data/qasper-test-v0.3.json
+#### Sparse (Question 2)
 ```
-$\rightarrow$ evaluate both the retrieval contexts and answers.
+!python evaluate_.py \
+--predictions sparse_predictions.jsonl \
+--gold data/qasper-test-v0.3.json \
+--bert_type bert-base-uncased \
+--cosine_type sentence-transformers/all-MiniLM-L6-v2
+```
 
 ### 4. **Results:**
 The result code is in [demo.ipynb](demo.ipynb) notebook
