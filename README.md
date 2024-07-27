@@ -1,0 +1,82 @@
+# rag-foundation-exercise
+
+## Installation
+
+**Note:** Prefer `python=3.10.*`
+
+### 1. Fork the repo
+
+### 2. Set up environment
+```
+git clone https://github.com/21522173huy/ai-bootcamp-2024
+```
+
+### 3. **Install Required Packages:**
+
+- Install the required packages from `requirements.txt`:
+
+```sh
+pip install -r requirements.txt
+```
+
+## Homework
+
+### 1. **Fill your implementation**
+
+Search for `"Your code here"` line in the codebase which will lead you to where you should place your code.
+
+### 2. **Run script**
+
+You should read the code in this repository carefully to understand the setup comprehensively.
+
+You can run the script below to get the results from your pre-built RAG, for example:
+
+```sh
+python -m scripts.main \
+   --data_path <your_data_path> \
+   --output_path predictions.jsonl \
+   --mode <your_mode> \
+   --force_index <True or False> \
+   --retrieval_only True \
+   --top_k 5
+```
+
+where some arguments can be:
+
+- `mode`: `sparse` or `semantic`
+- `force_index`: `True` or `False` (True: override the old vectorstore index)
+- `retrieval_only`: `True` or `False` (True: just get the retrieval contexts, answers are empty)
+
+#### NOTE:
+
+To use LLM generation with RAG pipeline, you can use ChatOpenAI by supplying OPENAI_API_KEY in the enviroment variable (supposed you have one).
+If you don't have access to OpenAI API, use Groq free-tier instead:
+
+- Register an account at https://console.groq.com/keys (free)
+- Generate your API key
+- Assign env variable: `export GROQ_API_KEY=<YOUR API KEY>`
+- Run the main script without `--retrieval_only` to use LLM
+
+### 3. **Run Evaluation:**
+```sh
+python evaluate.py --predictions predictions.jsonl --gold data/qasper-test-v0.3.json --retrieval_only
+```
+$\rightarrow$ just evaluate the retrieval contexts.
+
+```sh
+python evaluate.py --predictions predictions.jsonl --gold data/qasper-test-v0.3.json
+```
+$\rightarrow$ evaluate both the retrieval contexts and answers.
+
+### 4. **Results:**
+#### Semantic (Question 1)
+|   | Bert Score | Cosine Similarity |
+| -------- | ------- | -------- |
+| Answer  |   0.398  |0.155|
+| Evidence  |  0.473|   0.281 |
+
+#### Sparse (Question 2)
+|   | Bert Score | Cosine Similarity |
+| -------- | ------- | -------- |
+| Answer  |  0.408 |0.178|
+| Evidence  |  0.479|   0.292 |
