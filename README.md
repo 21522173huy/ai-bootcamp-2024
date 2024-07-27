@@ -69,6 +69,7 @@ python evaluate.py --predictions predictions.jsonl --gold data/qasper-test-v0.3.
 $\rightarrow$ evaluate both the retrieval contexts and answers.
 
 ### 4. **Results:**
+The result code is in [demo.ipynb](demo.ipynb) notebook
 #### Semantic (Question 1)
 |   | Bert Score | Cosine Similarity |
 | -------- | ------- | -------- |
