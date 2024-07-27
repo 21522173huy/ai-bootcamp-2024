@@ -26,27 +26,23 @@ pip install -r requirements.txt
 Search for `"Your code here"` line in the codebase which will lead you to where you should place your code.
 
 ### 2. **Run script**
+#### Semantic (Question 1)
 
-You should read the code in this repository carefully to understand the setup comprehensively.
-
-You can run the script below to get the results from your pre-built RAG, for example:
-
-```sh
-python -m scripts.main \
-   --data_path <your_data_path> \
-   --output_path predictions.jsonl \
-   --mode <your_mode> \
-   --force_index <True or False> \
-   --retrieval_only True \
-   --top_k 5
 ```
-
-where some arguments can be:
-
-- `mode`: `sparse` or `semantic`
-- `force_index`: `True` or `False` (True: override the old vectorstore index)
-- `retrieval_only`: `True` or `False` (True: just get the retrieval contexts, answers are empty)
-
+python -m scripts.main \
+--mode semantic \
+--retrieval_only False \
+--force_index True \
+--output_path semantic_predictions.jsonl
+```
+#### Sparse (Question 2)
+```
+python -m scripts.main \
+--mode sparse \
+--retrieval_only False \
+--force_index True \
+--output_path sparse_predictions.jsonl
+```
 #### NOTE:
 
 To use LLM generation with RAG pipeline, you can use ChatOpenAI by supplying OPENAI_API_KEY in the enviroment variable (supposed you have one).
